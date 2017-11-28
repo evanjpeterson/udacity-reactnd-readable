@@ -4,7 +4,7 @@ export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 
 export function fetchCategories () {
   return dispatch => {
-    return api.fetchCategories()
+    return api.getCategories()
       .then(categories => dispatch(receiveCategories(categories)))
   }
 }
