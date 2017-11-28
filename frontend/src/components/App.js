@@ -2,42 +2,39 @@ import React, { Component } from 'react'
 import './App.css'
 import { fetchCategories } from '../actions/categoryActions'
 import { connect } from 'react-redux'
+import { Route } from 'react-router-dom'
+import MainView from './MainView'
 
 class App extends Component {
-  componentWillMount() {
-    this.props.fetchCategories()
+  componentDidMount() {
+    const { fetchCategories } = this.props 
+
+    // Fetch categories at the top level because they can't be changed (by the client)
+    // and therefore shouldn't need to be refetched.
+    fetchCategories()
   }
 
   render() {
-    const { categories } = this.props
-
     return (
-      <div className="App">
-        <ul>
-          {categories.map(category => (
-            <li key={category}>
-              {category}
-            </li>
-          ))}
-        </ul>
+      <div className="app">
+        <div className="app-header">
+          <p>Readable.</p>
+        </div>
+        <Route exact path="/" render={() =>
+          <MainView />
+        }/>
       </div>
     );
   }
 }
 
-function mapStateToProps ({ categories }) {
-  return {
-    categories: categories.map(category => category.name)
-  }
-}
-
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     fetchCategories: () => dispatch(fetchCategories())
   }
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(App)
