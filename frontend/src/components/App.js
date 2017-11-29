@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import './App.css'
 import { fetchCategories } from '../actions/categoryActions'
 import { connect } from 'react-redux'
-import { Route } from 'react-router-dom'
+import { withRouter, Route, Link } from 'react-router-dom'
 import MainView from './MainView'
+import CategoryView from './CategoryView'
 
 class App extends Component {
   componentDidMount() {
@@ -18,10 +19,11 @@ class App extends Component {
     return (
       <div className="app">
         <div className="app-header">
-          <p>Readable.</p>
+          <Link to="/">Readable.</Link>
         </div>
-        <Route exact path="/" render={() =>
-          <MainView />
+        <Route exact path="/" component={MainView}/>
+        <Route exact path="/:category" render={({ match }) => 
+          <CategoryView category={match.params.category}/>
         }/>
       </div>
     );
@@ -34,7 +36,7 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   null,
   mapDispatchToProps
-)(App)
+)(App))

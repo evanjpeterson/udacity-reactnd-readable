@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { fetchAllPosts } from '../actions/postActions'
 import PostList from './PostList'
 
@@ -20,7 +21,7 @@ class MainView extends Component {
         <ul>
           {categories.map(category => (
             <li key={category}>
-              {category}
+              <Link to={`/${category}`}>{category}</Link>
             </li>
           ))}
         </ul>
