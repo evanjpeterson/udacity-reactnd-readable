@@ -78,7 +78,7 @@ export function removePost (id) {
 }
 
 export function getComments (postId) {
-  return fetch(`${baseUrl}/posts/${postId}/comments`)
+  return fetch(`${baseUrl}/posts/${postId}/comments`, { headers })
     .then(res => res.json()) 
 }
 

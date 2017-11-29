@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { 
   SORT_BY_NEWEST,
   SORT_BY_OLDEST,
@@ -16,7 +17,7 @@ class PostList extends Component {
       <div className="postList">
         {posts.map(post => (
           <div className="postListEntry">
-            <p className="postListEntry--title">{post.title}</p>
+            <Link to={`/${post.category}/${post.id}`}>{post.title}</Link>
           </div>
         ))}
       </div>

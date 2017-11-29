@@ -16,6 +16,13 @@ export function fetchPosts(category) {
   }
 }
 
+export function fetchPost(id) {
+  return dispatch => {
+    return api.getPost(id)
+      .then(post => dispatch(receivePosts([post])))
+  }
+}
+
 function receivePosts(posts) {
   return {
     type: RECEIVE_POSTS,
