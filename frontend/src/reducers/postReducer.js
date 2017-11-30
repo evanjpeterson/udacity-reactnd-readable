@@ -10,6 +10,7 @@ function reducer (state = initialState, action) {
     case UPDATE_POST:
       const newPost = action.post
       // Replace the matching post with the new post, and retain all other posts.
+      // If there's no post to replace, then the new post is simply added.
       return state
         .filter(post => post.id !== newPost.id)
         .concat([newPost])

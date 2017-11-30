@@ -56,7 +56,7 @@ export function voteOnPost (id, voteType) {
   }).then(res => res.json())
 }
 
-export function editPost (id, title, body) {
+export function editPost ({ id, title, body }) {
   return fetch(`${baseUrl}/posts/${id}`, {
     headers: {
       ...headers,
@@ -115,7 +115,7 @@ export function voteOnComment (id, voteType) {
   }).then(res => res.json())
 }
 
-export function editComment (id, body) {
+export function editComment ({ id, body }) {
   return fetch(`${baseUrl}/comments/${id}`, {
     headers: {
       ...headers,

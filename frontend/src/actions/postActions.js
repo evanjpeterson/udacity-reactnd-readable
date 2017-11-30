@@ -31,6 +31,20 @@ export function voteOnPost(id, voteType) {
   }
 }
 
+export function addPost(post) {
+  return dispatch => {
+    return api.addPost(post)
+      .then(post => dispatch(updatePost(post)))
+  }
+}
+
+export function editPost(post) {
+  return dispatch => {
+    return api.editPost(post)
+      .then(post => dispatch(updatePost(post)))
+  }
+}
+
 function receivePosts(posts) {
   return {
     type: RECEIVE_POSTS,
