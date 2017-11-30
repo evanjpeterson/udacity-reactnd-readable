@@ -16,7 +16,7 @@ class CategoryView extends Component {
     const { category } = this.props
 
     return (
-      <div className="categoryView">
+      <div className="category-view">
         <div>{category}</div>
         <PostList />
       </div>

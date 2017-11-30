@@ -14,7 +14,7 @@ class MainView extends Component {
 
   render() {
     return (
-      <div className="mainView">
+      <div className="main-view">
         <PostList />
       </div>
     );

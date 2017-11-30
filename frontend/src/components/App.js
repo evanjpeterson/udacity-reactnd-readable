@@ -18,12 +18,14 @@ class App extends Component {
   }
 
   render() {
+    const { categories } = this.props
+
     return (
       <div className="app">
         <div className="app-header">
           <Link to="/">Readable.</Link>
         </div>
-        <CategoryNav/>
+        <CategoryNav categories={categories}/>
 
         <Route exact path="/" component={MainView}/>
         <Route exact path="/:category" render={({ match }) => 
@@ -38,6 +40,12 @@ class App extends Component {
   }
 }
 
+function mapStateToProps({ categories }) {
+  return {
+    categories: categories.map(category => category.name)
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     fetchCategories: () => dispatch(fetchCategories())
@@ -45,6 +53,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default withRouter(connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App))

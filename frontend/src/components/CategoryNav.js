@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { MAX_CATEGORIES_SHOWN } from '../util/constants'
 
@@ -9,7 +8,7 @@ class CategoryNav extends Component {
     const { categories } = this.props
 
     return (
-      <div className="categoryNav">
+      <div className="category-nav">
         <ul>
           {categories.slice(0, MAX_CATEGORIES_SHOWN)
             .map(category => (
@@ -28,10 +27,6 @@ class CategoryNav extends Component {
 
 }
 
-function mapStateToProps({ categories }) {
-  return {
-    categories: categories.map(category => category.name)
-  }
-}
 
-export default connect(mapStateToProps)(CategoryNav)
+
+export default CategoryNav

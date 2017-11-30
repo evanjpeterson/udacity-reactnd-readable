@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import * as moment from 'moment'
 import { fetchPost } from '../actions/postActions'
 import { fetchComments } from '../actions/commentActions'
-import PostUpdooter from './PostUpdooter'
+import { formatTimestamp } from '../util/helpers'
+import PostSummary from './PostSummary'
 
 class PostView extends Component {
 
@@ -27,13 +27,10 @@ class PostView extends Component {
     }
 
     return (
-      <div className="postView">
-          <PostUpdooter postId={post.id}/>
-          <div className="postViewTitle">{post.title}</div>
-          <div className="postViewAuthor">{post.author}</div>
-          <div className="postViewDate">{formatTimestamp(post.timestamp)}</div>
-          <div className="postViewBody">{post.body}</div>
-          <div className="postViewComments">
+      <div className="post-view">
+          <PostSummary post={post} shouldLink={false}/>
+          <div className="post-view-body">{post.body}</div>
+          <div className="post-view-comments">
             <ul>
               {comments.map(comment => (
                 <div key={comment.id}> 
@@ -48,10 +45,6 @@ class PostView extends Component {
     )
   }
 
-}
-
-function formatTimestamp(timestamp) {
-    return moment(timestamp).format('MMM Do YYYY, h:mm a')
 }
 
 function mapStateToProps({ posts, comments }, { postId }) {

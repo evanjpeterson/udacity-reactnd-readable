@@ -11,13 +11,13 @@ class PostUpdooter extends Component {
     const { post, voteOnPost } = this.props
 
     return (
-      <div className="postUpdooter">
+      <div className="post-updooter">
         <button
           className="icon-button"
           onClick={() => voteOnPost(post.id, UPVOTE)}>
             <CaretUp size={30}/>
         </button>
-        <div className="postScore">{post.voteScore}</div>
+        <div className="post-score">{post.voteScore}</div>
         <button
           className="icon-button"
           onClick={() => voteOnPost(post.id, DOWNVOTE)}>
@@ -28,12 +28,6 @@ class PostUpdooter extends Component {
   }
 }
 
-function mapStateToProps({ posts }, { postId }) {
-  return {
-    post: posts.find(post => post.id === postId)
-  }
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     voteOnPost: (id, voteType) => dispatch(voteOnPost(id, voteType))
@@ -41,6 +35,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(PostUpdooter)
