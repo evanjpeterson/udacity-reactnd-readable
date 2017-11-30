@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import SortBy from './SortBy'
+import PostUpdooter from './PostUpdooter'
 import { 
   SORT_BY_NEWEST,
   SORT_BY_OLDEST,
@@ -19,9 +20,13 @@ class PostList extends Component {
         <Link to="/addpost">Add post</Link>
         <SortBy />
         {posts.map(post => (
-          <div className="postListEntry">
-            <span>{post.voteScore}</span>
-            <Link to={`/${post.category}/${post.id}`}>{post.title}</Link>
+          <div className="postListEntry" key={post.id}>
+            <PostUpdooter postId={post.id}/>
+            <div className="postListEntryTitle">
+              <Link to={`/${post.category}/${post.id}`}>{post.title}</Link>
+            </div>
+            <div className="postListEntryAuthor">{post.author}</div>
+            <div className="postListEntryCommentCount">{post.commentCount} comments</div>
           </div>
         ))}
       </div>

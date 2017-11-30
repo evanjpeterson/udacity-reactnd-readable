@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import * as moment from 'moment'
 import { fetchPost } from '../actions/postActions'
 import { fetchComments } from '../actions/commentActions'
+import PostUpdooter from './PostUpdooter'
 
 class PostView extends Component {
 
@@ -27,7 +28,7 @@ class PostView extends Component {
 
     return (
       <div className="postView">
-          <div className="postViewScore">{post.voteScore}</div>
+          <PostUpdooter postId={post.id}/>
           <div className="postViewTitle">{post.title}</div>
           <div className="postViewAuthor">{post.author}</div>
           <div className="postViewDate">{formatTimestamp(post.timestamp)}</div>

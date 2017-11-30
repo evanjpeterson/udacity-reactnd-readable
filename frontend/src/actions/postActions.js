@@ -1,6 +1,7 @@
 import * as api from '../util/api'
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
+export const UPDATE_POST = 'UPDATE_POST'
 
 export function fetchAllPosts() {
   return dispatch => {
@@ -23,9 +24,23 @@ export function fetchPost(id) {
   }
 }
 
+export function voteOnPost(id, voteType) {
+  return dispatch => {
+    return api.voteOnPost(id, voteType)
+      .then(post => dispatch(updatePost(post)))
+  }
+}
+
 function receivePosts(posts) {
   return {
     type: RECEIVE_POSTS,
     posts
+  }
+}
+
+function updatePost(post) {
+  return {
+    type: UPDATE_POST,
+    post
   }
 }
