@@ -3,6 +3,7 @@ import './App.css'
 import { fetchCategories } from '../actions/categoryActions'
 import { connect } from 'react-redux'
 import { withRouter, Route, Link } from 'react-router-dom'
+import CategoryNav from './CategoryNav'
 import MainView from './MainView'
 import CategoryView from './CategoryView'
 import PostView from './PostView'
@@ -22,6 +23,7 @@ class App extends Component {
         <div className="app-header">
           <Link to="/">Readable.</Link>
         </div>
+        <CategoryNav/>
 
         <Route exact path="/" component={MainView}/>
         <Route exact path="/:category" render={({ match }) => 

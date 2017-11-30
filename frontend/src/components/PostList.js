@@ -16,6 +16,7 @@ class PostList extends Component {
 
     return (
       <div className="postList">
+        <Link to="/addpost">Add post</Link>
         <SortBy />
         {posts.map(post => (
           <div className="postListEntry">

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { fetchAllPosts } from '../actions/postActions'
-import { MAX_CATEGORIES_SHOWN } from '../util/constants'
 import PostList from './PostList'
 
 class MainView extends Component {
@@ -15,31 +13,11 @@ class MainView extends Component {
   }
 
   render() {
-    const { categories } = this.props
-
     return (
       <div className="mainView">
-        <ul>
-          {categories.slice(0, MAX_CATEGORIES_SHOWN)
-            .map(category => (
-              <li key={category}>
-                <Link to={`/${category}`}>{category}</Link>
-              </li>
-            ))}
-            {/* As a follow-up feature, make a way to view *all* categories in a sane fashion */}
-            {categories.length > MAX_CATEGORIES_SHOWN &&
-              <li>...</li>
-            }
-        </ul>
         <PostList />
       </div>
     );
-  }
-}
-
-function mapStateToProps({ categories }) {
-  return {
-    categories: categories.map(category => category.name),
   }
 }
 
@@ -50,6 +28,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(MainView)
