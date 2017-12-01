@@ -20,7 +20,8 @@ class AddEditPostView extends Component {
     super(props)
     const { postId } = this.props
     this.state = {
-      editing: postId != null
+      editing: postId != null,
+      adding: postId == null
     }
   }
 
@@ -34,11 +35,42 @@ class AddEditPostView extends Component {
 
 
   render() {
-    //const { editing } = this.state
-    //const { post } = this.props
+    const { adding } = this.state
 
     return (
-      <div>Add/Edit</div>
+      <div>
+        <div>Add/Edit</div>
+        <div>
+          <input
+            type='text'
+            placeholder='Title'
+            value={this.state.title}
+            onChange={event => this.setState({ title: event.target.value })}
+          />
+          <input
+            type='textarea'
+            placeholder='Body'
+            value={this.state.body}
+            onChange={event => this.setState({ body: event.target.value })}
+          />
+          {adding &&
+            <input
+              type='text'
+              placeholder='Author'
+              value={this.state.author}
+              onChange={event => this.setState({ author: event.target.value })}
+            />
+          }
+          {adding &&
+            <select
+              value={this.state.category}
+              onChange={event => this.setState({ author: event.target.value })}
+            >
+              <option>Default</option>
+            </select>
+          }
+        </div>
+      </div>
     )
   }
 }
