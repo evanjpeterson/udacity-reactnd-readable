@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import {
   addPost,
   editPost,
@@ -49,13 +50,16 @@ class AddEditPostView extends Component {
   editPostAndRedirect = () => {
     const { postId, editPost, history } = this.props
 
-    editPost(this.state)
+    editPost({
+      id: postId,
+      ...this.state
+    })
     // Redirect to the post detail page for the post that was just edited
     history.push(`/${this.state.category}/${postId}`)
   }
 
   render() {
-    const { editing, categories, addPost, editPost } = this.props
+    const { editing, categories } = this.props
 
     return (
       <div>
@@ -122,4 +126,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddEditPostView)
+)(withRouter(AddEditPostView))
