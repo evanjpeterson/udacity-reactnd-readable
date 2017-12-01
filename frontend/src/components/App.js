@@ -37,7 +37,7 @@ class App extends Component {
           <Route exact path="/" component={MainView}/>
           <Route exact path="/addPost" component={AddEditPostView}/>
           <Route exact path="/editPost/:postId" render={({ match }) =>
-            <AddEditPostView postId={match.params.postId}/>
+            <AddEditPostView postId={match.params.postId} editing={true}/>
           }/>
           <Route exact path="/:category" render={({ match }) => 
             <CategoryView category={match.params.category}/>

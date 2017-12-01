@@ -7,35 +7,55 @@ import {
 } from '../actions/postActions'
 
 class AddEditPostView extends Component {
-  // TODO Use local state for this one.
-
-  // Add and Edit
-  // Title, Body
-
-  // Add only
-  // Author
-  // Category dropdown
  
   constructor(props) {
     super(props)
-    const { postId } = this.props
     this.state = {
-      editing: postId != null,
-      adding: postId == null
+      title: '',
+      body: '',
+      author: '',
+      category: ''
     }
   }
 
   componentDidMount() {
     // Load a post's details only if in an edit workflow
-    if (this.state.editing) {
+    if (this.props.editing) {
       const { postId, fetchPost } = this.props
       fetchPost(postId)
     }
   }
 
+  componentWillReceiveProps({ post, editing }) {
+    // If editing and props are received where post is not null,
+    // then the fetchPost() async call has finished. Can now set initial form state.
+    if (editing && post != null) {
+      this.setState({
+        title: post.title,
+        body: post.body,
+        category: post.category
+      })
+    }
+  }
+
+  addPostAndRedirect = () => {
+    const { addPost, history } = this.props
+
+    addPost(this.state)
+    // Redirect to the category where the new post was just added
+    history.push(`/${this.state.category}`)
+  }
+
+  editPostAndRedirect = () => {
+    const { postId, editPost, history } = this.props
+
+    editPost(this.state)
+    // Redirect to the post detail page for the post that was just edited
+    history.push(`/${this.state.category}/${postId}`)
+  }
 
   render() {
-    const { adding } = this.state
+    const { editing, categories, addPost, editPost } = this.props
 
     return (
       <div>
@@ -47,13 +67,12 @@ class AddEditPostView extends Component {
             value={this.state.title}
             onChange={event => this.setState({ title: event.target.value })}
           />
-          <input
-            type='textarea'
+          <textarea
             placeholder='Body'
             value={this.state.body}
             onChange={event => this.setState({ body: event.target.value })}
           />
-          {adding &&
+          {!editing &&
             <input
               type='text'
               placeholder='Author'
@@ -61,24 +80,34 @@ class AddEditPostView extends Component {
               onChange={event => this.setState({ author: event.target.value })}
             />
           }
-          {adding &&
+          {!editing &&
             <select
               value={this.state.category}
-              onChange={event => this.setState({ author: event.target.value })}
+              onChange={event => this.setState({ category: event.target.value })}
             >
-              <option>Default</option>
+              <option value=''>Select category</option>
+              {categories.map(category =>
+                <option
+                  value={category}
+                  key={category}
+                >{category}</option>
+              )}
             </select>
           }
+          <button
+            onClick={editing ? this.editPostAndRedirect : this.addPostAndRedirect}
+          >Submit</button>
         </div>
       </div>
     )
   }
 }
 
-function mapStateToProps({ posts }, { postId }) {
+function mapStateToProps({ posts, categories }, { postId }) {
   return {
     // Leave post empty if no postId is defined.
-    post: postId != null && posts.find(post => post.id === postId),
+    post: postId && posts.find(post => post.id === postId),
+    categories: categories.map(category => category.name)
   }
 }
 

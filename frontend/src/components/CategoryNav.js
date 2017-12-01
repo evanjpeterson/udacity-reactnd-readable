@@ -24,9 +24,6 @@ class CategoryNav extends Component {
       </div>
     )
   }
-
 }
-
-
 
 export default CategoryNav
