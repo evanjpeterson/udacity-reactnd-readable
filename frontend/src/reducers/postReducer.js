@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS, UPDATE_POST } from '../actions/postActions'
+import { RECEIVE_POSTS, UPDATE_POST, REMOVE_POST } from '../actions/postActions'
 
 const initialState = []
 
@@ -14,6 +14,8 @@ function reducer (state = initialState, action) {
       return state
         .filter(post => post.id !== newPost.id)
         .concat([newPost])
+    case REMOVE_POST:
+      return state.filter(post => post.id !== action.postId)
     default:
       return state
   }

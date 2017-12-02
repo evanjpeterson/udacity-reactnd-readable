@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { fetchPost } from '../actions/postActions'
 import { fetchComments } from '../actions/commentActions'
 import { formatTimestamp } from '../util/helpers'
@@ -13,6 +14,15 @@ class PostView extends Component {
     // Load this post's details
     fetchPost(postId)
     fetchComments(postId)
+  }
+
+  componentWillReceiveProps({ post: newPost }) {
+    const { post: currentPost, history } = this.props
+    if (currentPost != null && newPost == null) {
+      // The post got deleted while the user was on the PostView page.
+      // Kick back to the home page.
+      history.push('/')
+    }
   }
 
   render() {
@@ -64,4 +74,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostView)
+)(withRouter(PostView))

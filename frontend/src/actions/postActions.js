@@ -2,6 +2,7 @@ import * as api from '../util/api'
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const UPDATE_POST = 'UPDATE_POST'
+export const REMOVE_POST = 'REMOVE_POST'
 
 export function fetchAllPosts() {
   return dispatch => {
@@ -45,6 +46,13 @@ export function editPost(post) {
   }
 }
 
+export function deletePost(postId) {
+  return dispatch => {
+    return api.removePost(postId)
+      .then(() => dispatch(removePost(postId)))
+  }
+}
+
 function receivePosts(posts) {
   return {
     type: RECEIVE_POSTS,
@@ -56,5 +64,12 @@ function updatePost(post) {
   return {
     type: UPDATE_POST,
     post
+  }
+}
+
+function removePost(postId) {
+  return {
+    type: REMOVE_POST,
+    postId
   }
 }
