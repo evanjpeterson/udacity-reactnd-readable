@@ -12,7 +12,7 @@ function reducer (state = initialState, action) {
       // Same idea as UPDATE_POST, filter out the outdated comment,
       // bring in the new updated version of the comment.
       return state
-        .filter(comment => comment.id !== newComment.commentId)
+        .filter(comment => comment.id !== newComment.id)
         .concat([newComment])
     case REMOVE_COMMENT:
       return state.filter(comment => comment.id !== action.commentId)

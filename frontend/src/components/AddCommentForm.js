@@ -38,7 +38,7 @@ class AddCommentForm extends Component {
             // Clear fields after submit
             this.setState({body: '', author: ''})
           }}
-        >Submit</button>
+        >Add</button>
     </div>
 
     )
