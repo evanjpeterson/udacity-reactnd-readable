@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { formatTimestamp } from '../util/helpers'
-import PostUpdooter from './PostUpdooter'
+import VoteControl from './VoteControl'
 import { deletePost } from '../actions/postActions'
 
 class PostSummary extends Component {
@@ -11,8 +11,8 @@ class PostSummary extends Component {
     const { post, shouldLink, deletePost, hideCommentCount } = this.props
 
     return (
-      <div className="post-summary" key={post.id}>
-        <PostUpdooter post={post}/>
+      <div className="post-summary">
+        <VoteControl votable={post} forPost={true}/>
         { shouldLink ?
           <div className="post-title-link">
             <Link to={`/${post.category}/${post.id}`}>{post.title}</Link>

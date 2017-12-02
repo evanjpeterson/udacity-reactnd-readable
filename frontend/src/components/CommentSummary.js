@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { editComment, deleteComment } from '../actions/commentActions'
 import { formatTimestamp } from '../util/helpers'
+import VoteControl from './VoteControl'
 
 class CommentSummary extends Component {
 
@@ -24,7 +25,8 @@ class CommentSummary extends Component {
     const { editing, body } = this.state
 
     return (
-      <div> 
+      <div className="comment-summary"> 
+        <VoteControl votable={comment} forComment={true}/>
         <div className="comment-author">{comment.author}</div>
         <div className="comment-date">{formatTimestamp(comment.timestamp)}</div>
         { editing ? 

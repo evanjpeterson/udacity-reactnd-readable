@@ -57,7 +57,8 @@ class PostView extends Component {
 function mapStateToProps({ posts, comments }, { postId }) {
   return {
     post: posts.find(post => post.id === postId),
-    comments
+    // Simply sort comments by date, oldest first.
+    comments: comments.sort((a, b) => a.timestamp - b.timestamp)
   }
 }
 
