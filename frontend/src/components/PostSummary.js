@@ -8,7 +8,7 @@ import { deletePost } from '../actions/postActions'
 class PostSummary extends Component {
 
   render() {
-    const { post, shouldLink, deletePost } = this.props
+    const { post, shouldLink, deletePost, hideCommentCount } = this.props
 
     return (
       <div className="post-summary" key={post.id}>
@@ -24,7 +24,9 @@ class PostSummary extends Component {
         }
         <div className="post-author">{post.author}</div>
         <div className="post-date">{formatTimestamp(post.timestamp)}</div>
-        <div className="post-comment-count">{post.commentCount} comments</div>
+        {!hideCommentCount &&
+          <div className="post-comment-count">{post.commentCount} comments</div>
+        }
         <div className="post-edit-link">
           <Link to={`/editpost/${post.id}`}>Edit post</Link>
         </div>

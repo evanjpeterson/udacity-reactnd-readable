@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { fetchPost } from '../actions/postActions'
 import { fetchComments } from '../actions/commentActions'
-import { formatTimestamp } from '../util/helpers'
 import PostSummary from './PostSummary'
+import CommentSummary from './CommentSummary'
+import AddCommentForm from './AddCommentForm'
 
 class PostView extends Component {
 
@@ -38,18 +39,14 @@ class PostView extends Component {
 
     return (
       <div className="post-view">
-          <PostSummary post={post} shouldLink={false}/>
+          <PostSummary post={post} shouldLink={false} hideCommentCount={true}/>
           <div className="post-view-body">{post.body}</div>
           <div className="post-view-comments">
-            <ul>
-              {comments.map(comment => (
-                <div key={comment.id}> 
-                  <div className="commentAuthor">{comment.author}</div>
-                  <div className="commentDate">{formatTimestamp(post.timestamp)}</div>
-                  <div className="commentBody">{comment.body}</div>
-                </div>
-              ))}
-            </ul>
+            <div className="post-view-comment-count">{comments.length} comments</div>
+            {comments.map(comment => 
+              <CommentSummary key={comment.id} comment={comment} />
+            )}
+            <AddCommentForm parentId={post.id}/>
           </div>
       </div>
     )

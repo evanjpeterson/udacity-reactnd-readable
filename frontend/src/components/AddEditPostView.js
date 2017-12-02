@@ -63,7 +63,7 @@ class AddEditPostView extends Component {
 
     return (
       <div>
-        <div>Add/Edit</div>
+        <div>{editing ? 'Edit Post' : 'Add Post'}</div>
         <div>
           <input
             type='text'
