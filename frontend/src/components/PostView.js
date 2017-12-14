@@ -39,15 +39,15 @@ class PostView extends Component {
 
     return (
       <div className="post-view">
-          <PostSummary post={post} shouldLink={false} hideCommentCount={true}/>
-          <div className="post-view-body">{post.body}</div>
-          <div className="post-view-comments">
-            <div className="post-view-comment-count">{comments.length} comments</div>
-            {comments.map(comment => 
-              <CommentSummary key={comment.id} comment={comment} />
-            )}
-            <AddCommentForm parentId={post.id}/>
-          </div>
+        <PostSummary post={post} shouldLink={false} hideCommentCount={true}/>
+        <div className="post-view-body">{post.body}</div>
+        <div className="post-view-comments">
+          <div className="post-view-comment-count">{comments.length} comments</div>
+          {comments.map(comment => 
+            <CommentSummary key={comment.id} comment={comment} />
+          )}
+          <AddCommentForm parentId={post.id}/>
+        </div>
       </div>
     )
   }
@@ -57,8 +57,8 @@ class PostView extends Component {
 function mapStateToProps({ posts, comments }, { postId }) {
   return {
     post: posts.find(post => post.id === postId),
-    // Simply sort comments by date, oldest first.
-    comments: comments.sort((a, b) => a.timestamp - b.timestamp)
+    // Sort comments by score, highest first
+    comments: comments.sort((a, b) => b.voteScore - a.voteScore)
   }
 }
 

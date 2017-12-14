@@ -33,19 +33,21 @@ class App extends Component {
         </div>
         <CategoryNav categories={categories}/>
 
-        <Switch>
-          <Route exact path="/" component={MainView}/>
-          <Route exact path="/addPost" component={AddEditPostView}/>
-          <Route exact path="/editPost/:postId" render={({ match }) =>
-            <AddEditPostView postId={match.params.postId} editing={true}/>
-          }/>
-          <Route exact path="/:category" render={({ match }) => 
-            <CategoryView category={match.params.category}/>
-          }/>
-          <Route exact path="/:category/:postId" render={({ match }) =>
-            <PostView postId={match.params.postId}/>
-          }/>
-        </Switch>
+        <div className="app-body">
+          <Switch>
+            <Route exact path="/" component={MainView}/>
+            <Route exact path="/addPost" component={AddEditPostView}/>
+            <Route exact path="/editPost/:postId" render={({ match }) =>
+              <AddEditPostView postId={match.params.postId} editing={true}/>
+            }/>
+            <Route exact path="/:category" render={({ match }) => 
+              <CategoryView category={match.params.category}/>
+            }/>
+            <Route exact path="/:category/:postId" render={({ match }) =>
+              <PostView postId={match.params.postId}/>
+            }/>
+          </Switch>
+        </div>
 
       </div>
     );

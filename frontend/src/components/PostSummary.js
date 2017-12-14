@@ -35,13 +35,17 @@ class PostSummary extends Component {
             </div>
             <div className="post-summary-details-line2">
               <div className="post-summary-details-edit">
-                <Button component={Link} to={`/editpost/${post.id}`}>Edit post</Button>
+                <Button 
+                  component={Link} to={`/editpost/${post.id}`}
+                  color="primary"
+                >Edit post</Button>
               </div>
               <div className="post-summary-details-delete">
                 <Button
-                  onClick={() => deletePost(post.id)}>
-                  Delete post
-                </Button>
+                  onClick={() => deletePost(post.id)}
+                  color="accent"
+                >Delete post</Button>
+                
               </div>
             </div>
           </div>
