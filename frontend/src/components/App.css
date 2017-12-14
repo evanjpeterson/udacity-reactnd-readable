@@ -1,0 +1,64 @@
+/*
+  Darkest: 222
+  Darker: 444
+  Dark: 777
+  Light: AAA
+*/
+
+.post-list {
+  width: 30%;
+  margin: 0 10px;
+}
+
+.post-summary {
+  display: flex;
+  align-items: center;
+  margin: 10px 0; 
+  height: 100px;
+  width: 100%;
+}
+.post-summary-details-title,
+.post-summary-details-title-link {
+  font-size: 1.2rem;
+}
+.post-summary-details {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.post-summary-details-line1,
+.post-summary-details-line2 {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 -5px;
+}
+.post-summary-details-edit,
+.post-summary-details-delete,
+.post-summary-details-author,
+.post-summary-details-date,
+.post-summary-details-comment-count {
+  margin: 0 5px;
+}
+.post-summary-details-author {
+  color: #222;
+  font-weight: bold;
+}
+.post-summary-details-date {
+  color: #444;
+}
+.post-summary-details-comment-count {
+  color: #777;
+}
+
+.vote-control {
+  color: #222;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0 10px;
+}

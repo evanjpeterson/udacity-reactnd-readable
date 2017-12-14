@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import CaretUp from 'react-icons/lib/fa/caret-up'
-import CaretDown from 'react-icons/lib/fa/caret-down'
+import IconButton from 'material-ui/IconButton'
+import UpArrow from 'material-ui-icons/ArrowDropUp'
+import DownArrow from 'material-ui-icons/ArrowDropDown'
 import { voteOnPost } from '../actions/postActions'
 import { voteOnComment } from '../actions/commentActions'
 import { UPVOTE, DOWNVOTE } from '../util/constants'
@@ -23,17 +24,16 @@ class VoteControl extends Component {
 
     return (
       <div className="vote-control">
-        <button
-          className="icon-button"
-          onClick={() => voteAction(votable.id, UPVOTE)}>
-            <CaretUp size={10}/>
-        </button>
-        <div className="vote-score">{votable.voteScore}</div>
-        <button
-          className="icon-button"
-          onClick={() => voteAction(votable.id, DOWNVOTE)}>
-            <CaretDown size={10}/>
-        </button>
+          <IconButton className="vote-control-button"
+            onClick={() => voteAction(votable.id, UPVOTE)}
+          >
+            <UpArrow size={40}/>
+          </IconButton>
+          <div className="vote-score">{votable.voteScore}</div>
+          <IconButton className="vote-control-button"
+            onClick={() => voteAction(votable.id, DOWNVOTE)}>
+              <DownArrow size={40}/>
+          </IconButton>
       </div>
     )
   }
