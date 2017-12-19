@@ -12,6 +12,7 @@ Users are able to post content to predefined categories, comment on their posts 
     - `node server`
 * (In another terminal window) Install and start the development server
     - `cd frontend`
+    - `npm install`
     - `npm start`
 
 ## API Server

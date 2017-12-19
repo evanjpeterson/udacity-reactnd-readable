@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import SortBy from './SortBy'
 import PostSummary from './PostSummary'
 import Button from 'material-ui/Button'
-import Add from 'material-ui-icons/Add'
 import { 
   SORT_BY_NEWEST,
   SORT_BY_OLDEST,
