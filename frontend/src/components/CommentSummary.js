@@ -23,20 +23,8 @@ class CommentSummary extends Component {
     })
   }
 
-  getDeleteButton({ comment, deleteComment }) {
-    return (
-      <div className="comment-summary-details-delete">
-        <Button
-          color="accent"
-          onClick={() => deleteComment(comment.id)}>
-          Delete comment
-        </Button>
-      </div>
-    )
-  }
-
   render() {
-    const { comment, editComment } = this.props
+    const { comment, editComment, deleteComment } = this.props
     const { editing, body } = this.state
 
     return (
@@ -78,7 +66,13 @@ class CommentSummary extends Component {
                       onClick={() => this.setState({ editing: true })}
                     >Edit comment</Button>
                   </div>
-                  { this.getDeleteButton(this.props) }
+                  <div className="comment-summary-details-delete">
+                    <Button
+                      color="accent"
+                      onClick={() => deleteComment(comment.id)}>
+                      Delete comment
+                    </Button>
+                  </div>
                 </div>
               </div>
             )}

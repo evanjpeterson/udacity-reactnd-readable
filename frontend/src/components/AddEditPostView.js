@@ -102,7 +102,7 @@ class AddEditPostView extends Component {
               <Select
                 value={this.state.category}
                 onChange={event => this.setState({ category: event.target.value })}
-                input={<Input name="post-category" id="post-category"/>}
+                input={<Input name="post-category" />}
               >
                 <MenuItem value="">Select category</MenuItem>
                 {categories.map(category =>

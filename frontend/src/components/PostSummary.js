@@ -45,7 +45,6 @@ class PostSummary extends Component {
                   onClick={() => deletePost(post.id)}
                   color="accent"
                 >Delete post</Button>
-                
               </div>
             </div>
           </div>

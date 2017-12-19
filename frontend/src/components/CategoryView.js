@@ -17,9 +17,10 @@ class CategoryView extends Component {
 
     if (nextProps.category !== this.props.category) {
       // Grab posts for the current category (again)
-      // This component doesn't actually get remounted by react-router if
-      // the route match remains the same but the key differs
-      // e.g. /category1 -> /category2 (both match '/:category' route)
+      // This is because the component doesn't actually get remounted by react-router if
+      // the route match remains the same but the key differs,
+      //    e.g. /category1 -> /category2 (both match '/:category' route),
+      // so componentDidMount() does not get re-run.
       fetchPosts(nextProps.category)
     }
   }
@@ -29,7 +30,7 @@ class CategoryView extends Component {
 
     return (
       <div className="category-view">
-        <div>{category}</div>
+        <div class="category-view-header">{category}</div>
         <PostList />
       </div>
     );
