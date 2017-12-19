@@ -86,8 +86,6 @@
   justify-content: flex-start;
   margin: 0 -5px;
 }
-.comment-summary-details-edit,
-.comment-summary-details-delete,
 .comment-summary-details-author,
 .comment-summary-details-date {
   margin: 0 5px;
@@ -100,7 +98,7 @@
   color: #444;
 }
 .comment-summary-details-body {
-  padding: 10px;
+  padding: 10px 0;
   overflow-wrap: break-word;
   color: #444;
 }
@@ -124,7 +122,8 @@
   padding: 10px;
 }
 
-.add-comment-form {
+.add-comment-form,
+.add-post-form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -132,7 +131,12 @@
   padding: 10px;
   width: 90%;
 }
-.add-comment-form-title {
+.add-comment-form-title,
+.add-post-form-title {
   color: #444;
   font-size: 1.2rem;
+}
+
+.add-post-category-select {
+  width: 35%;
 }

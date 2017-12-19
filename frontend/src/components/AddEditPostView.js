@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import Paper from 'material-ui/Paper'
+import Input, { InputLabel } from 'material-ui/Input'
+import { MenuItem } from 'material-ui/Menu'
+import TextField from 'material-ui/TextField'
+import { FormControl } from 'material-ui/Form'
+import Button from 'material-ui/Button'
+import Select from 'material-ui/Select'
 import {
   addPost,
   editPost,
@@ -62,47 +69,58 @@ class AddEditPostView extends Component {
     const { editing, categories } = this.props
 
     return (
-      <div>
-        <div>{editing ? 'Edit Post' : 'Add Post'}</div>
-        <div>
-          <input
-            type='text'
-            placeholder='Title'
+      <Paper>
+        <div className="add-post-form">
+          <div className="add-post-form-title">{editing ? 'Edit Post' : 'Add Post'}</div>
+          <TextField
+            label="Title"
             value={this.state.title}
             onChange={event => this.setState({ title: event.target.value })}
           />
-          <textarea
-            placeholder='Body'
+          <TextField
+            label="Body"
+            multiline
+            fullWidth
+            margin="normal"
+            rows="3"
             value={this.state.body}
             onChange={event => this.setState({ body: event.target.value })}
           />
           {!editing &&
-            <input
-              type='text'
-              placeholder='Author'
+            <TextField
+              label="Author"
               value={this.state.author}
               onChange={event => this.setState({ author: event.target.value })}
             />
           }
           {!editing &&
-            <select
-              value={this.state.category}
-              onChange={event => this.setState({ category: event.target.value })}
+            <FormControl
+                className="add-post-category-select"
+                margin="normal"
             >
-              <option value=''>Select category</option>
-              {categories.map(category =>
-                <option
-                  value={category}
-                  key={category}
-                >{category}</option>
-              )}
-            </select>
+              <InputLabel htmlFor="post-category">Category</InputLabel>
+              <Select
+                value={this.state.category}
+                onChange={event => this.setState({ category: event.target.value })}
+                input={<Input name="post-category" id="post-category"/>}
+              >
+                <MenuItem value="">Select category</MenuItem>
+                {categories.map(category =>
+                  <MenuItem
+                    value={category}
+                    key={category}
+                  >{category}</MenuItem>
+                )}
+              </Select>
+            </FormControl>
           }
-          <button
+          <Button
+            raised
+            color="primary"
             onClick={editing ? this.editPostAndRedirect : this.addPostAndRedirect}
-          >Submit</button>
+            >Submit</Button>
         </div>
-      </div>
+      </Paper>
     )
   }
 }

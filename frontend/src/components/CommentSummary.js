@@ -72,7 +72,7 @@ class CommentSummary extends Component {
               <div>
                 <div className="comment-summary-details-body">{comment.body}</div>
                 <div className="comment-summary-details-line2">
-                  <div classname="comment-summary-details-edit">
+                  <div className="comment-summary-details-edit">
                     <Button
                       color="primary"
                       onClick={() => this.setState({ editing: true })}
