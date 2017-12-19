@@ -29,9 +29,9 @@ class App extends Component {
     return (
       <div className="app">
         <div className="app-header">
-          <Link to="/">Readable.</Link>
+          <Link className="app-header-home-link" to="/">Readable.</Link>
+          <CategoryNav categories={categories}/>
         </div>
-        <CategoryNav categories={categories}/>
 
         <div className="app-body">
           <Switch>

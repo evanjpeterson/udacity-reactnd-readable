@@ -1,9 +1,36 @@
 /*
-  Darkest: 222
-  Darker: 444
-  Dark: 777
-  Light: AAA
+  Darker: 222
+  Dark: 444
+  Light: 777
+  Lighter: AAA
 */
+
+.app-header {
+  padding-bottom: 20px;
+}
+.app-header-home-link {
+  color: #222;
+  text-decoration: none;
+  font-size: 2.2rem;
+}
+.app-header-home-link:hover {
+  color: #444;
+}
+
+.category-nav {
+  display: flex;
+  align-items: flex-end;
+}
+.category-nav-item {
+  margin: 0 10px;
+}
+.category-nav-link {
+  color: #444;
+  font-size: 1.2rem;
+}
+.category-nav-link:hover {
+  color: #777;
+}
 
 .app-body {
   width: 30%;
@@ -13,7 +40,7 @@
 }
 
 .category-view-header {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   color: #222;
 }
 

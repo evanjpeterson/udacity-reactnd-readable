@@ -9,18 +9,16 @@ class CategoryNav extends Component {
 
     return (
       <div className="category-nav">
-        <ul>
-          {categories.slice(0, MAX_CATEGORIES_SHOWN)
-            .map(category => (
-              <li key={category}>
-                <Link to={`/${category}`}>{category}</Link>
-              </li>
-            ))}
-          {/* As a follow-up feature, make a way to view *all* categories in a sane fashion */}
-          {categories.length > MAX_CATEGORIES_SHOWN &&
-            <li>...</li>
-          }
-        </ul>
+        {categories.slice(0, MAX_CATEGORIES_SHOWN)
+          .map(category => (
+            <div className="category-nav-item" key={category}>
+              <Link className="category-nav-link" to={`/${category}`}>{category}</Link>
+            </div>
+          ))}
+        {/* As a follow-up feature, make a way to view *all* categories in a sane fashion */}
+        {categories.length > MAX_CATEGORIES_SHOWN &&
+          <div>...</div>
+        }
       </div>
     )
   }
